@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS bdAPI.User (
     apellidos varchar(50) NOT NULL,
     edad int,
     administrador bit,
-    estado bit NOT NULL,
+    estado bit NOT NULL DEFAULT 1,
     --
     PRIMARY KEY(userId)
 );
