@@ -9,15 +9,22 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 //-----FIN HEADER
 
 require_once 'db/dbase.php';
-require_once 'controllers/UsuarioController.php';
+
 
 // Enrutamiento manual
-$url= $_GET['url']??'';
+$url = $_GET['url']??'';
+$method = $_SERVER['REQUEST_METHOD'];
 
 switch ($url) {
     case 'usuarios':
+        require_once 'controllers/UsuarioController.php';
         $controller = new UsuarioController();
-        $controller->handleRequest($_SERVER['REQUEST_METHOD']);
+        $controller-> handleRequest($method);
+        break;
+    case 'productos':
+        require_once 'controllers/ProductoController.php';
+        $controller = new ProductoController();
+        $controller-> handleRequest($method);
         break;
     default:
         http_response_code(404);
